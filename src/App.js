@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import MovieList from './components/MovieList';
 
+import './App.css';
+
 class App extends Component {
 
-  state = {}
+  constructor() {
+    super();
+    this.state = {}
+  }
 
   componentDidMount() {
     this._getMovies()
@@ -18,7 +23,7 @@ class App extends Component {
     return fetch('https://yts.ag/api/v2/list_movies.json')
           .then(response => response.json())
           .then(json => json.data.movies)
-          .catch( err => console.log('error..'));
+          .catch(err => console.log(err));
   }
 
   _renderMovies = () => {
@@ -27,9 +32,9 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.movies);
     return (
-      <div className="App">
+      <div className="app">
+        <h1 className="app-title">MovieApp</h1>
         {this.state.movies ? this._renderMovies() : <div>Loading..</div> }
       </div>
     );

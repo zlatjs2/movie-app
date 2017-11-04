@@ -1,32 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import MovieCard from './MovieCard';
 
-const propTypes = {
-  title: PropTypes.string,
-  coverImg: PropTypes.string,
-};
-
-const defaultProps = {
-  title: 'no-title',
-  coverImg: 'no-image',
-};
+import './MovieList.css';
 
 const MovieList = ({ movies }) => {
   return (
-    <ul>
-      {movies.map((movie, idx) =>
+    <ul className="movie-list">
+      {movies.map((movie) =>
          <MovieCard
-            title={movie.title}
-            img={movie.coverImg}
-            key={idx}
+            title={movie.title_english}
+            image={movie.medium_cover_image}
+            synopsis={movie.synopsis}
+            genres={movie.genres}
+            uploadDate={movie.date_uploaded}
+            key={movie.id}
           />
       )}
     </ul>
   )
 }
-
-MovieList.propTypes = propTypes;
-MovieList.defaultProps = defaultProps;
 
 export default MovieList;
